@@ -125,7 +125,7 @@ export default function FloatingModules() {
     return (
         <div
             ref={containerRef}
-            className="floating-modules fixed inset-0 z-20 pointer-events-none"
+            className="floating-modules fixed inset-0 z-20 pointer-events-none hidden md:block"
             style={{ perspective: '1000px' }}
         >
             {modules.map((moduleData, index) => (  // ✅ CHANGED: was "module, index"
@@ -150,13 +150,13 @@ export default function FloatingModules() {
                     />
 
                     {/* Main text */}
-                    <div className="relative z-10 px-8 py-4 border-5 border-[#0078B4] backdrop-blur-sm bg-gradient-to-br from-[#0078B4]/20 to-transparent shadow-2xl">
+                    <div className="relative z-10 px-4 md:px-8 py-2 md:py-4 border-3 md:border-5 border-[#0078B4] backdrop-blur-sm bg-gradient-to-br from-[#0078B4]/20 to-transparent shadow-2xl">
                         <div className="text-container">
-                            <h3 className="text-2xl lg:text-3xl font-primary font-black text-white whitespace-nowrap tracking-tight uppercase">
+                            <h3 className="text-base md:text-2xl lg:text-3xl font-primary font-black text-white whitespace-nowrap tracking-tight uppercase">
                                 {moduleData.name.split(' ').map((word, i) => (  // ✅ CHANGED: was module.name
                                     <span
                                         key={i}
-                                        className="inline-block mr-2"
+                                        className="inline-block mr-1 md:mr-2"
                                         style={{
                                             animation: `shimmer 3s ease-in-out infinite ${i * 0.3}s`,
                                             backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #0078B4 50%, #ffffff 100%)',
@@ -173,7 +173,7 @@ export default function FloatingModules() {
 
                             {/* Accent line */}
                             <div
-                                className="h-[3px] mt-2 bg-[#0078B4]"
+                                className="h-[2px] md:h-[3px] mt-1 md:mt-2 bg-[#0078B4]"
                                 style={{
                                     animation: 'expand 2s ease-in-out infinite'
                                 }}
@@ -186,7 +186,7 @@ export default function FloatingModules() {
                         {[...Array(3)].map((_, i) => (
                             <div
                                 key={i}
-                                className="particle absolute w-2 h-2 bg-[#0078B4]"
+                                className="particle absolute w-1 md:w-2 h-1 md:h-2 bg-[#0078B4]"
                                 style={{
                                     left: `${Math.random() * 100}%`,
                                     top: `${Math.random() * 100}%`,
