@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #141414;
+    --foreground: #f8f8f8;
+    --hero-clip-start: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    --hero-clip-end: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 0% 0%);
+
+    /* Brutalist variables */
+    --border-thin: 2px;
+    --border-medium: 4px;
+    --border-thick: 6px;
+    --border-extra-thick: 8px;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-title span {
+    display: block;
+    line-height: 0.9;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.hero-clip-mask {
+    clip-path: var(--hero-clip-start);
+    transition: clip-path 0.1s linear;
+    width: 35vw;
+    height: 40vh;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.hero-clip-mask video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    object-fit: cover;
+    transform: translate(-50%, -50%) translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.intro-text p {
+    will-change: filter, opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* Utility classes for premium sections */
+.bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Brutalist Utilities */
+    .brutalist-border {
+        border: var(--border-thick) solid currentColor;
+    }
+
+    .brutalist-border-thin {
+        border: var(--border-thin) solid currentColor;
+    }
+
+    .brutalist-border-medium {
+        border: var(--border-medium) solid currentColor;
+    }
+
+    .brutalist-border-thick {
+        border: var(--border-thick) solid currentColor;
+    }
+
+    .brutalist-border-extra {
+        border: var(--border-extra-thick) solid currentColor;
+    }
+
+    .sharp-corners {
+        border-radius: 0;
+    }
+
+    .minimal-rounded {
+        border-radius: 4px;
+    }
+}
