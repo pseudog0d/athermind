@@ -28,13 +28,13 @@ export default function FloatingModules() {
         moduleRefs.current.forEach((moduleEl, index) => {
             if (!moduleEl) return;
 
-            const module = modules[index];
+            const moduleData = modules[index];  // ✅ CHANGED: was "const module"
 
             // Set initial state
             gsap.set(moduleEl, {
                 opacity: 0,
                 scale: 0,
-                rotateZ: module.rotation * 2,
+                rotateZ: moduleData.rotation * 2,  // ✅ CHANGED: was module.rotation
                 rotateX: 0,
                 rotateY: 0
             });
@@ -43,9 +43,9 @@ export default function FloatingModules() {
             gsap.to(moduleEl, {
                 opacity: 1,
                 scale: 1,
-                rotateZ: module.rotation,
+                rotateZ: moduleData.rotation,  // ✅ CHANGED: was module.rotation
                 duration: 1.5,
-                delay: module.delay,
+                delay: moduleData.delay,  // ✅ CHANGED: was module.delay
                 ease: 'elastic.out(1, 0.8)'
             });
 
@@ -55,10 +55,10 @@ export default function FloatingModules() {
             tl.to(moduleEl, {
                 y: `${Math.random() * 30 - 15}px`,
                 x: `${Math.random() * 30 - 15}px`,
-                rotateZ: module.rotation + (Math.random() * 10 - 5),
+                rotateZ: moduleData.rotation + (Math.random() * 10 - 5),  // ✅ CHANGED
                 duration: 3 + Math.random() * 2,
                 ease: 'sine.inOut',
-                delay: module.delay
+                delay: moduleData.delay  // ✅ CHANGED
             });
 
             // 3D rotation on hover
@@ -128,14 +128,14 @@ export default function FloatingModules() {
             className="floating-modules fixed inset-0 z-20 pointer-events-none"
             style={{ perspective: '1000px' }}
         >
-            {modules.map((module, index) => (
+            {modules.map((moduleData, index) => (  // ✅ CHANGED: was "module, index"
                 <div
-                    key={module.name}
+                    key={moduleData.name}  // ✅ CHANGED: was module.name
                     ref={(el) => { moduleRefs.current[index] = el; }}
                     className="module-item absolute pointer-events-auto cursor-pointer"
                     style={{
-                        left: `${module.x}%`,
-                        top: `${module.y}%`,
+                        left: `${moduleData.x}%`,  // ✅ CHANGED: was module.x
+                        top: `${moduleData.y}%`,  // ✅ CHANGED: was module.y
                         transform: 'translate(-50%, -50%)',
                         transformStyle: 'preserve-3d'
                     }}
@@ -153,7 +153,7 @@ export default function FloatingModules() {
                     <div className="relative z-10 px-8 py-4 border-5 border-[#0078B4] backdrop-blur-sm bg-gradient-to-br from-[#0078B4]/20 to-transparent shadow-2xl">
                         <div className="text-container">
                             <h3 className="text-2xl lg:text-3xl font-primary font-black text-white whitespace-nowrap tracking-tight uppercase">
-                                {module.name.split(' ').map((word, i) => (
+                                {moduleData.name.split(' ').map((word, i) => (  // ✅ CHANGED: was module.name
                                     <span
                                         key={i}
                                         className="inline-block mr-2"
